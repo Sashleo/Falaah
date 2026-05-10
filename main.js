@@ -11,17 +11,17 @@ let searchQuery    = '';
 let activeProvince = 'All Provinces';
 
 const CATEGORIES = [
-  { name: 'All Categories',                       icon: '🌐', id: 'all' },
-  { name: 'Healthcare and Medical Services',       icon: '🏥', id: 'healthcare' },
-  { name: 'Education and Literacy',                icon: '📚', id: 'education' },
-  { name: 'Poverty Alleviation and Microfinance',  icon: '🤝', id: 'poverty' },
-  { name: 'Women Empowerment and Gender Equality', icon: '♀',  id: 'women' },
-  { name: 'Human Rights and Legal Aid',            icon: '⚖',  id: 'rights' },
-  { name: 'Disaster Relief and Humanitarian Aid',  icon: '🆘', id: 'disaster' },
-  { name: 'Environment and Climate Action',        icon: '🌿', id: 'environment' },
-  { name: 'Child Welfare and Protection',          icon: '🧒', id: 'children' },
-  { name: 'Rural Development and Community Uplift',icon: '🏘', id: 'rural' },
-  { name: 'Disability and Special Needs',          icon: '♿', id: 'disability' },
+  { name: 'All Categories',                        id: 'all' },
+  { name: 'Healthcare and Medical Services',       id: 'healthcare' },
+  { name: 'Education and Literacy',                id: 'education' },
+  { name: 'Poverty Alleviation and Microfinance',  id: 'poverty' },
+  { name: 'Women Empowerment and Gender Equality', id: 'women' },
+  { name: 'Human Rights and Legal Aid',            id: 'rights' },
+  { name: 'Disaster Relief and Humanitarian Aid',  id: 'disaster' },
+  { name: 'Environment and Climate Action',        id: 'environment' },
+  { name: 'Child Welfare and Protection',          id: 'children' },
+  { name: 'Rural Development and Community Uplift',id: 'rural' },
+  { name: 'Disability and Special Needs',          id: 'disability' },
 ];
 
 const PROVINCES = [
@@ -50,7 +50,7 @@ function initSupabase() {
 
 async function loadNGOs() {
   const list = document.getElementById('ngoList');
-  if (list) list.innerHTML = `<div style="text-align:center;padding:80px 20px;color:var(--text-muted)"><div style="font-size:2rem;margin-bottom:12px">⏳</div><p>Loading organisations…</p></div>`;
+  if (list) list.innerHTML = `<div style="text-align:center;padding:80px 20px;color:var(--text-muted)"><div style="font-size:2rem;margin-bottom:12px"></div><p>Loading organisations…</p></div>`;
 
   const { data, error } = await supabaseClient
     .from('ngos')
@@ -212,7 +212,7 @@ function renderNGOList() {
   if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
 
   container.innerHTML = filtered.length === 0
-    ? '<div class="no-results"><div class="icon">🔍</div><p>No NGOs match your search.<br>Try different keywords or clear the filters.</p><button class="btn btn-outline" style="margin-top:18px" onclick="clearFilters()">Clear all filters</button></div>'
+    ? '<div class="no-results"><div class="icon"></div><p>No NGOs match your search.<br>Try different keywords or clear the filters.</p><button class="btn btn-outline" style="margin-top:18px" onclick="clearFilters()">Clear all filters</button></div>'
     : filtered.map(renderNGOCard).join('');
 }
 
@@ -260,14 +260,14 @@ async function handleSubmitForm(e) {
     verified:           false,
   };
   const { error } = await supabaseClient.from('ngos').insert([payload]);
-  if (error) { console.error(error); showToast('⚠ Submission failed. Please try again.'); }
-  else { showToast('✓ Submitted! Our team will review it shortly.'); e.target.reset(); }
+  if (error) { console.error(error); showToast('Submission failed. Please try again.'); }
+  else { showToast('Submitted. Our team will review it shortly.'); e.target.reset(); }
   btn.textContent = 'Submit for Review →'; btn.disabled = false;
 }
 
 function handleContactForm(e) {
   e.preventDefault();
-  showToast("✓ Message sent! We'll get back to you soon.");
+  showToast("Message sent. We'll get back to you soon.");
   e.target.reset();
 }
 
