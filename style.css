@@ -598,3 +598,133 @@ button { cursor: pointer; font-family: var(--font-body); border: none; backgroun
   .search-bar-section { top: 60px; }
   .cta-inner { flex-direction: column; text-align: center; }
 }
+
+
+
+/* =============================================
+   MOBILE OPTIMIZATION - NGO CARDS & ABOUT SECTION
+   ============================================= */
+
+@media (max-width: 700px) {
+  /* Make NGO cards full-width on mobile */
+  .ngo-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+  }
+
+  /* Ensure card header fits mobile screen */
+  .ngo-card-header {
+    padding: 14px 12px;
+    gap: 10px;
+  }
+
+  /* Make logo smaller on mobile */
+  .ngo-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Make NGO name wrap on mobile */
+  .ngo-name {
+    font-size: 0.88rem;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  /* Make tags wrap properly */
+  .ngo-tags {
+    gap: 4px;
+  }
+
+  .ngo-tag,
+  .ngo-loc-tag {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  /* Make card body content fit mobile */
+  .ngo-card-body {
+    padding: 0 12px 14px;
+  }
+
+  .ngo-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+  }
+
+  /* Stack info grid vertically on very small screens */
+  @media (max-width: 480px) {
+    .ngo-info-grid {
+      grid-template-columns: 1fr !important;
+      gap: 8px;
+    }
+  }
+
+  /* Keep 2 columns on small mobile */
+  @media (min-width: 481px) and (max-width: 700px) {
+    .ngo-info-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  /* Make info labels and values smaller */
+  .info-label {
+    font-size: 0.62rem;
+  }
+
+  .info-value {
+    font-size: 0.78rem;
+  }
+
+  /* Make footer buttons stack properly */
+  .ngo-card-footer {
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 10px;
+  }
+
+  .ngo-card-footer .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.78rem;
+    padding: 10px 16px;
+  }
+
+  /* Make About section content smaller on mobile */
+  .about-content p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .section-title {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+
+  .display-title {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 44px 0;
+  }
+
+  .ngo-card-header {
+    padding: 12px 10px;
+  }
+
+  .ngo-desc {
+    font-size: 0.82rem;
+  }
+
+  .info-value a {
+    word-break: break-all;
+  }
+}
