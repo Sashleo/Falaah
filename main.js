@@ -423,3 +423,30 @@ document.addEventListener('DOMContentLoaded', function() {
   };
   document.head.appendChild(script);
 });
+
+async function handleContactForm(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  var payload = {
+    name:    document.getElementById('cName')    ? document.getElementById('cName').value.trim()    : null,
+    email:   document.getElementById('cEmail')   ? document.getElementById('cEmail').value.trim()   : null,
+    subject: document.getElementById('cSubject') ? document.getElementById('cSubject').value        : null,
+    message: document.getElementById('cMsg')     ? document.getElementById('cMsg').value.trim()     : null,
+  };
+
+  var result = await supabaseClient.from('contact_messages').insert([payload]);
+
+  if (result.error) {
+    console.error(result.error);
+    showToast('Message could not be sent. Please email us directly at info@sqwf.org.');
+  } else {
+    showToast('Message sent. We will get back to you soon.');
+    e.target.reset();
+  }
+
+  btn.textContent = 'Send Message';
+  btn.disabled = false;
+}
