@@ -339,7 +339,7 @@ async function handleSubmitForm(e) {
     verified:  false,
   };
 
-  var result = await supabaseClient.from('submissions').insert([payload]);
+  var result = await supabaseClient.from('ngos').insert([payload]);
 
   if (result.error) {
     console.error(result.error);
